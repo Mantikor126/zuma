@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zuma Countdown</title>
+
+<style>
+
+body{
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial;
+    background:#f6f6f6;
+    text-align:center;
+    margin:0;
+    padding:20px;
+}
+
+h1{
+    font-size:38px;
+    margin-bottom:5px;
+}
+
+h2{
+    font-weight:400;
+    color:#555;
+    margin-top:0;
+}
+
+img{
+    width:90%;
+	 background:#f6f6f6;
+    max-width:420px;
+    border-radius:20px;
+    
+}
+
+.countdown{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.box{
+    background:white;
+    border-radius:15px;
+    padding:15px;
+    box-shadow:0 5px 12px rgba(0,0,0,0.1);
+}
+
+.number{
+    font-size:32px;
+    font-weight:bold;
+}
+
+.label{
+    font-size:14px;
+    color:#666;
+}
+
+footer{
+    margin-top:30px;
+    color:#777;
+    font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Zuma kommt nach Hause 🐶</h1>
+<h2>Der große Countdown läuft!</h2>
+
+
+<img src="https://i.ibb.co/wNBYqLyR/HEIF-Image.png" alt="HEIF-Image" border="0">
+<p>
+Noch ein bisschen Geduld…<br>
+Dann beginnt das Abenteuer mit <b>Zuma</b>! 🐾
+</p>
+
+<div class="countdown">
+
+<div class="box">
+<div class="number" id="months">0</div>
+<div class="label">Monate</div>
+</div>
+
+<div class="box">
+<div class="number" id="weeks">0</div>
+<div class="label">Wochen</div>
+</div>
+
+<div class="box">
+<div class="number" id="days">0</div>
+<div class="label">Tage</div>
+</div>
+
+<div class="box">
+<div class="number" id="hours">0</div>
+<div class="label">Stunden</div>
+</div>
+
+<div class="box">
+<div class="number" id="minutes">0</div>
+<div class="label">Minuten</div>
+</div>
+
+<div class="box">
+<div class="number" id="seconds">0</div>
+<div class="label">Sekunden</div>
+</div>
+
+</div>
+
+<footer>
+18.07.2026 • 12:00 Uhr
+</footer>
+
+<script>
+
+const target = new Date("2026-07-18T12:00:00");
+
+function updateCountdown(){
+
+    const now = new Date();
+    const diff = target - now;
+
+    if(diff <= 0){
+        document.body.innerHTML="<h1>Zuma ist da! 🐶</h1>";
+        return;
+    }
+
+    const totalSeconds = Math.floor(diff/1000);
+
+    const seconds = totalSeconds % 60;
+    const minutes = Math.floor(totalSeconds/60) % 60;
+    const hours = Math.floor(totalSeconds/3600) % 24;
+    const daysTotal = Math.floor(totalSeconds/86400);
+
+    const months = Math.floor(daysTotal/30);
+    const weeks = Math.floor((daysTotal % 30)/7);
+    const days = (daysTotal % 30) % 7;
+
+    document.getElementById("months").innerText = months;
+    document.getElementById("weeks").innerText = weeks;
+    document.getElementById("days").innerText = days;
+    document.getElementById("hours").innerText = hours;
+    document.getElementById("minutes").innerText = minutes;
+    document.getElementById("seconds").innerText = seconds;
+
+}
+
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+</script>
+
+</body>
+</html>
