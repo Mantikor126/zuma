@@ -123,31 +123,57 @@ const target = new Date("2026-07-18T12:00:00");
 
 function updateCountdown(){
 
-    const now = new Date();
-    const diff = target - now;
+const now = new Date();
 
-    if(diff <= 0){
-        document.body.innerHTML="<h1>Zuma ist da! 🐶</h1>";
-        return;
-    }
+if(now >= target){
+document.body.innerHTML="<h1>Zuma ist da! 🐶🎉</h1>";
+return;
+}
 
-    const totalSeconds = Math.floor(diff/1000);
+let tempDate = new Date(now);
 
-    const seconds = totalSeconds % 60;
-    const minutes = Math.floor(totalSeconds/60) % 60;
-    const hours = Math.floor(totalSeconds/3600) % 24;
-    const daysTotal = Math.floor(totalSeconds/86400);
+let months = 0;
+while(true){
+    let next = new Date(tempDate);
+    next.setMonth(next.getMonth()+1);
+    if(next <= target){
+        months++;
+        tempDate = next;
+    } else break;
+}
 
-    const months = Math.floor(daysTotal/30);
-    const weeks = Math.floor((daysTotal % 30)/7);
-    const days = (daysTotal % 30) % 7;
+let weeks = 0;
+while(true){
+    let next = new Date(tempDate);
+    next.setDate(next.getDate()+7);
+    if(next <= target){
+        weeks++;
+        tempDate = next;
+    } else break;
+}
 
-    document.getElementById("months").innerText = months;
-    document.getElementById("weeks").innerText = weeks;
-    document.getElementById("days").innerText = days;
-    document.getElementById("hours").innerText = hours;
-    document.getElementById("minutes").innerText = minutes;
-    document.getElementById("seconds").innerText = seconds;
+let days = 0;
+while(true){
+    let next = new Date(tempDate);
+    next.setDate(next.getDate()+1);
+    if(next <= target){
+        days++;
+        tempDate = next;
+    } else break;
+}
+
+const diff = target - tempDate;
+
+const hours = Math.floor(diff / (1000*60*60));
+const minutes = Math.floor((diff % (1000*60*60))/(1000*60));
+const seconds = Math.floor((diff % (1000*60))/1000);
+
+document.getElementById("months").innerText = months;
+document.getElementById("weeks").innerText = weeks;
+document.getElementById("days").innerText = days;
+document.getElementById("hours").innerText = hours;
+document.getElementById("minutes").innerText = minutes;
+document.getElementById("seconds").innerText = seconds;
 
 }
 
@@ -155,6 +181,5 @@ setInterval(updateCountdown,1000);
 updateCountdown();
 
 </script>
-
 </body>
 </html>
