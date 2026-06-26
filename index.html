@@ -204,17 +204,17 @@ document.getElementById("days").innerText = days;
 document.getElementById("hours").innerText = hours;
 document.getElementById("minutes").innerText = minutes;
 document.getElementById("seconds").innerText = seconds;
-document.getElementById(“line1”).innerText =
-${totalDays} Tage, ${hours} Stunden, ${minutes} Minuten, ${seconds} Sekunden;
+document.getElementById("line1").innerText =
+`${totalDays} Tage, ${hours} Stunden, ${minutes} Minuten, ${seconds} Sekunden`;
 
-document.getElementById(“line2”).innerText =
-${totalHours.toLocaleString("de-DE")} Stunden, ${minutes} Minuten, ${seconds} Sekunden;
+document.getElementById("line2").innerText =
+`${totalHours.toLocaleString("de-DE")} Stunden, ${minutes} Minuten, ${seconds} Sekunden`;
 
-document.getElementById(“line3”).innerText =
-${totalMinutes.toLocaleString("de-DE")} Minuten, ${seconds} Sekunden;
+document.getElementById("line3").innerText =
+`${totalMinutes.toLocaleString("de-DE")} Minuten, ${seconds} Sekunden`;
 
-document.getElementById(“line4”).innerText =
-${totalSeconds.toLocaleString("de-DE")} Sekunden;
+document.getElementById("line4").innerText =
+`${totalSeconds.toLocaleString("de-DE")} Sekunden`;
 }
 
 setInterval(updateCountdown,1000);
