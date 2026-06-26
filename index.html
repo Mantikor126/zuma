@@ -64,6 +64,23 @@ footer{
     font-size:14px;
 }
 
+.remaining{
+    margin-top:30px;
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 12px rgba(0,0,0,0.1);
+}
+
+.remaining h3{
+    margin-top:0;
+}
+
+.remaining p{
+    font-size:20px;
+    margin:8px 0;
+}	
+
 </style>
 </head>
 
@@ -113,6 +130,14 @@ Dann beginnt das Abenteuer mit <b>Zuma</b>! 🐾
 
 </div>
 
+	<div class="remaining">
+    <h3>Das sind noch</h3>
+    <p><span id="totalDays">0</span> Tage</p>
+    <p><span id="totalHours">0</span> Stunden</p>
+    <p><span id="totalMinutes">0</span> Minuten</p>
+    <p><span id="totalSeconds">0</span> Sekunden</p>
+</div>
+
 <footer>
 11.07.2026 • 10:00 Uhr
 </footer>
@@ -125,6 +150,13 @@ function updateCountdown(){
 
 const now = new Date();
 
+const totalDiff = target - now;
+
+const totalDays = Math.floor(totalDiff / (1000*60*60*24));
+const totalHours = Math.floor(totalDiff / (1000*60*60));
+const totalMinutes = Math.floor(totalDiff / (1000*60));
+const totalSeconds = Math.floor(totalDiff / 1000);
+	
 if(now >= target){
 document.body.innerHTML="<h1>Zuma ist da! 🐶🎉</h1>";
 return;
@@ -174,7 +206,10 @@ document.getElementById("days").innerText = days;
 document.getElementById("hours").innerText = hours;
 document.getElementById("minutes").innerText = minutes;
 document.getElementById("seconds").innerText = seconds;
-
+document.getElementById("totalDays").innerText = totalDays;
+document.getElementById("totalHours").innerText = totalHours;
+document.getElementById("totalMinutes").innerText = totalMinutes;
+document.getElementById("totalSeconds").innerText = totalSeconds;
 }
 
 setInterval(updateCountdown,1000);
